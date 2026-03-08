@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<robot name="Balancing" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find Balancing_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find Balancing_description)/urdf/Balancing.trans" />
+<xacro:include filename="$(find Balancing_description)/urdf/Balancing.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="2.6514350005061423e-18 0.01119468907525927 0.06248813249095532" rpy="0 0 0"/>
+    <mass value="0.4207352225984817"/>
+    <inertia ixx="0.000453" iyy="0.000427" izz="0.000164" ixy="-0.0" iyz="-9.4e-05" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Balancing_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Balancing_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link1_1">
+  <inertial>
+    <origin xyz="4.92348903071601e-18 4.92348903071601e-18 -4.92348903071601e-18" rpy="0 0 0"/>
+    <mass value="0.9063102106524854"/>
+    <inertia ixx="0.000555" iyy="0.000346" izz="0.000346" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Balancing_description/meshes/link1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Balancing_description/meshes/link1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="rev1" type="continuous">
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link1_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+</robot>
